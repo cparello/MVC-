@@ -1,14 +1,11 @@
 <?php require APPROOT . '/views/includes/header.php'; ?>
-<h1><?php echo $data['title'] . 'XXX'; ?></h1>
-
-
-<?php
-
-
-foreach ($data['posts'] as $post) {
-    echo '<h1>' . $post->title . '</h1><br>';
-}
-?>
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-3"><?php echo $data['title']; ?></h1>
+        <p class="display-3"><?php echo $data['description']; ?></p>
+        <p class="display-3">Version <?php echo APPVERSION; ?></p>
+    </div>
+</div>
 
 
 <?php require APPROOT . '/views/includes/footer.php'; ?>

@@ -8,6 +8,7 @@
 
 class Pages extends Controller
 {
+    private $postModel;
 
     public function __construct()
     {
@@ -20,8 +21,8 @@ class Pages extends Controller
         $posts = $this->postModel->getPosts();
 
         $data = [
-            'title' => 'INDEX',
-            'posts' => $posts
+            'title' => 'Shareposts',
+            'description' => 'Simple social network built on MVC framework.'
         ];
 
 
@@ -30,7 +31,10 @@ class Pages extends Controller
 
     public function about()
     {
-        $data = ['title' => 'ABOUT'];
+        $data = [
+            'title' => 'ABOUT',
+            'description' => 'About page text goes here..'
+        ];
         $this->view('pages/about', $data);
     }
 
