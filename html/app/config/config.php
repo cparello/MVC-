@@ -8,7 +8,7 @@
 
 define('DB_HOST', '192.168.23.15');
 define('DB_USER', 'chris');
-define('DB_PASS', 'Yellowmein1');
+define('DB_PASS', '********');
 define('DB_NAME', 'shareposts');
 
 define('APPROOT', dirname(__DIR__));
