@@ -15,6 +15,9 @@ class Users extends controller
         $this->userModel = $this->model('User');
     }
 
+    /**
+     *
+     */
     public function register()
     {
         //check for post
@@ -146,7 +149,7 @@ class Users extends controller
 
                 if ($loggedInUser) {
                     //create session
-                    die('success');
+                    $this->createUserSession($loggedInUser);
                 } else {
                     $data['password_error'] = 'Password is incorrect!';
 
@@ -170,6 +173,27 @@ class Users extends controller
             // Load view
             $this->view('users/login', $data);
         }
+    }
+
+    /**
+     *
+     */
+    public function createUserSession($user)
+    {
+        $_SESSION['user_id'] = $user->id;
+        $_SESSION['user_email'] = $user->email;
+        $_SESSION['user_name'] = $user->name;
+        redirect('posts');
+    }
+
+    /**
+     *
+     */
+    public function logout()
+    {
+        unset($_SESSION['user_id'], $_SESSION['user_email'], $_SESSION['user_name']);
+        session_destroy();
+        redirect('users/login');
     }
 
 

@@ -53,3 +53,11 @@ function flash($name = '', $message = '', $class = 'alert alert-success')
     }
 }
 
+/**
+ *
+ */
+function isLoggedIn(): bool
+{
+    return isset($_SESSION['user_id']) ? true : false;
+}
+
