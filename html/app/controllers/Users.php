@@ -69,7 +69,17 @@ class Users extends controller
             // Make sure errors are empty
             if (empty($data['email_error']) && empty($data['name_error']) && empty($data['password_error']) && empty($data['confirm_password_error'])) {
                 // Validated
-                die('SUCCESS');
+
+                //hash password
+                $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+
+                //register user
+                if ($this->userModel->register($data)) {
+                    flash('register_success', 'You are registered');
+                    redirect('users/login');
+                } else {
+                    die('Something went wrong');
+                };
             } else {
                 // Load view with errors
                 $this->view('users/register', $data);
@@ -120,10 +130,28 @@ class Users extends controller
                 $data['password_error'] = 'Please enter password';
             }
 
+            //check for user email
+            if ($this->userModel->findUserByEmail($data['email'])) {
+                //user found
+            } else {
+                $data['email_error'] = 'No user found!';
+            }
+
+
             // Make sure errors are empty
             if (empty($data['email_error']) && empty($data['password_error'])) {
                 // Validated
-                die('SUCCESS');
+                //check and set logged in user
+                $loggedInUser = $this->userModel->login($data['email'], $data['password']);
+
+                if ($loggedInUser) {
+                    //create session
+                    die('success');
+                } else {
+                    $data['password_error'] = 'Password is incorrect!';
+
+                    $this->view('users/login', $data);
+                }
             } else {
                 // Load view with errors
                 $this->view('users/login', $data);
@@ -143,4 +171,6 @@ class Users extends controller
             $this->view('users/login', $data);
         }
     }
+
+
 }

@@ -2,7 +2,6 @@
 .idea/rips/
 .idea/sonarlint/
 .idea/workspace.xml
-html/app/helpers/
 html/public/img/
 /html/app/config/config.php
 .idea/.name
