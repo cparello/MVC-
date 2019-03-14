@@ -17,7 +17,7 @@ class Post
 
     public function getPosts(): array
     {
-        $this->db->query('SELECT *, p.id, u.id  FROM posts p INNER JOIN users u ON p.id=u.id ORDER BY p.created_at DESC ');
+        $this->db->query('SELECT *, p.id, u.id  FROM posts p LEFT JOIN users u ON p.id=u.id ORDER BY p.created_at DESC ');
 
         return $this->db->resultSet();
     }
