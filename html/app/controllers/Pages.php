@@ -1,19 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: chris
- * Date: 3/10/2019
- * Time: 3:17 PM
- */
 
 class Pages extends Controller
 {
-    private $postModel;
-
     public function __construct()
     {
-//        echo "pages loaded";
-        $this->postModel = $this->model('Post');
+
     }
 
     public function index()
@@ -21,13 +12,11 @@ class Pages extends Controller
         if (isLoggedIn()) {
             redirect('posts');
         }
-        $posts = $this->postModel->getPosts();
 
         $data = [
-            'title' => 'Shareposts',
-            'description' => 'Simple social network built on MVC framework.'
+            'title' => 'SharePosts',
+            'description' => 'Simple social network built on the TraversyMVC PHP framework'
         ];
-
 
         $this->view('pages/index', $data);
     }
@@ -35,10 +24,10 @@ class Pages extends Controller
     public function about()
     {
         $data = [
-            'title' => 'ABOUT',
-            'description' => 'About page text goes here..'
+            'title' => 'About Us',
+            'description' => 'App to share posts with other users'
         ];
+
         $this->view('pages/about', $data);
     }
-
 }
