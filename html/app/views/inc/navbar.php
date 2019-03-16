@@ -44,7 +44,7 @@
             <ul class="navbar-nav ml-auto">
                 <?php if (isset($_SESSION['user_id'])): ?>
                     <li class="nav-item active">
-                        <span class="text-white pt-3 pl-3 pr-3">Welcome <?php echo $_SESSION['name']; ?></span>
+                        <span class="text-white pt-3 pl-3 pr-3">Welcome <?php echo $_SESSION['email']; ?></span>
                     </li>
                     <li class="nav-item active">
                         <a class="nav-link" href="<?php echo URLROOT; ?>/users/logout">
